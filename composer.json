@@ -20,6 +20,7 @@
         "drupal/core-project-message": "11.1.6",
         "drupal/core-recommended": "11.1.6",
         "drupal/radix": "^6.0",
+        "drupal/webform": "^6.3@beta",
         "drush/drush": "^13.4"
     },
     "conflict": {
