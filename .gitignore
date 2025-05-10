@@ -42,3 +42,5 @@ web/sites/simpletest
 # simpletest
 # Ignore .ddev
 .ddev
+# ignore keys
+access_key*
