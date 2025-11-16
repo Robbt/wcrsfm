@@ -16,10 +16,15 @@
     ],
     "require": {
         "composer/installers": "^2.3",
-        "drupal/core-composer-scaffold": "11.1.6",
-        "drupal/core-project-message": "11.1.6",
-        "drupal/core-recommended": "11.1.6",
+        "drupal/core-composer-scaffold": "11.2.8",
+        "drupal/core-project-message": "11.2.8",
+        "drupal/core-recommended": "11.2.8",
+        "drupal/media_expire": "^2.7",
+        "drupal/migrate_plus": "^6.0",
+        "drupal/migrate_source_csv": "^3.7",
         "drupal/radix": "^6.0",
+        "drupal/s3fs": "^3.7",
+        "drupal/smart_date": "^4.2",
         "drupal/webform": "^6.3@beta",
         "drush/drush": "^13.4"
     },
