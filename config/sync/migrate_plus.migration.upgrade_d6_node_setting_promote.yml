@@ -1,0 +1,46 @@
+uuid: 820949c6-2d48-4920-8eb7-8ea743729527
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_node_setting_promote
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - Configuration
+migration_group: migrate_drupal_6
+label: "Node type 'promote' setting"
+source:
+  plugin: d6_node_type
+  constants:
+    entity_type: node
+    field_name: promote
+process:
+  entity_type:
+    -
+      plugin: get
+      source: constants/entity_type
+  bundle:
+    -
+      plugin: get
+      source: type
+  field_name:
+    -
+      plugin: get
+      source: constants/field_name
+  label:
+    -
+      plugin: default_value
+      default_value: 'Promoted to front page'
+  default_value/0/value:
+    -
+      plugin: get
+      source: options/promote
+destination:
+  plugin: 'entity:base_field_override'
+idMap: {  }
+migration_dependencies:
+  required:
+    - upgrade_d6_node_type
+  optional: {  }

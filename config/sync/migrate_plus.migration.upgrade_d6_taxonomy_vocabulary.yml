@@ -1,0 +1,48 @@
+uuid: f725fcee-607e-4a85-afbd-3e000f723b24
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_taxonomy_vocabulary
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - Configuration
+migration_group: migrate_drupal_6
+label: 'Taxonomy vocabularies'
+source:
+  plugin: d6_taxonomy_vocabulary
+process:
+  vid:
+    -
+      plugin: machine_name
+      source: name
+    -
+      plugin: make_unique_entity_field
+      entity_type: taxonomy_vocabulary
+      field: vid
+      length: 30
+      migrated: true
+  label:
+    -
+      plugin: get
+      source: name
+  name:
+    -
+      plugin: get
+      source: name
+  description:
+    -
+      plugin: get
+      source: description
+  weight:
+    -
+      plugin: get
+      source: weight
+destination:
+  plugin: 'entity:taxonomy_vocabulary'
+idMap: {  }
+migration_dependencies:
+  required: {  }
+  optional: {  }

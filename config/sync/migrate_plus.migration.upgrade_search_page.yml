@@ -1,0 +1,60 @@
+uuid: 774bba5d-00cd-4c2b-8f13-b52147d61a59
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_search_page
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - Configuration
+migration_group: migrate_drupal_6
+label: 'Search page configuration'
+source:
+  plugin: d6_search_page
+  variables:
+    - node_rank_comments
+    - node_rank_promote
+    - node_rank_recent
+    - node_rank_relevance
+    - node_rank_sticky
+    - node_rank_views
+  constants:
+    id: node_search
+    path: node
+    plugin: node_search
+process:
+  module:
+    -
+      plugin: get
+      source: module
+  id:
+    -
+      plugin: get
+      source: constants/id
+  label:
+    -
+      plugin: get
+      source: constants/id
+  path:
+    -
+      plugin: get
+      source: constants/path
+  plugin:
+    -
+      plugin: get
+      source: constants/plugin
+  configuration:
+    -
+      plugin: default_value
+      default_value: {  }
+  configuration/rankings:
+    -
+      plugin: search_configuration_rankings
+destination:
+  plugin: 'entity:search_page'
+idMap: {  }
+migration_dependencies:
+  required: {  }
+  optional: {  }

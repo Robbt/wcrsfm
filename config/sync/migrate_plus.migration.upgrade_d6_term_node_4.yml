@@ -1,0 +1,103 @@
+uuid: bd5d8cc5-c464-44fd-b94e-57a3f0f87304
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_term_node_4
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - Content
+migration_group: migrate_drupal_6
+label: 'Term/node relationships'
+source:
+  plugin: d6_term_node
+  vid: '4'
+process:
+  nid:
+    -
+      plugin: migration_lookup
+      migration:
+        - upgrade_d6_node_complete_audio
+        - upgrade_d6_node_complete_blog
+        - upgrade_d6_node_complete_book
+        - upgrade_d6_node_complete_event
+        - upgrade_d6_node_complete_forum
+        - upgrade_d6_node_complete_page
+        - upgrade_d6_node_complete_panel
+        - upgrade_d6_node_complete_playlist
+        - upgrade_d6_node_complete_poll
+        - upgrade_d6_node_complete_program
+        - upgrade_d6_node_complete_sponsor
+        - upgrade_d6_node_complete_station_program
+        - upgrade_d6_node_complete_station_schedule
+        - upgrade_d6_node_complete_story
+        - upgrade_d6_node_complete_webform
+      source: nid
+    -
+      plugin: node_complete_node_lookup
+    -
+      plugin: skip_on_empty
+      method: row
+  type:
+    -
+      plugin: get
+      source: type
+  field_blog_type:
+    -
+      plugin: get
+      source: tid
+destination:
+  plugin: 'entity:node'
+idMap: {  }
+migration_dependencies:
+  required:
+    - upgrade_d6_vocabulary_entity_display
+    - upgrade_d6_vocabulary_entity_form_display
+    - upgrade_d6_node_complete_audio
+    - upgrade_d6_node_complete_blog
+    - upgrade_d6_node_complete_book
+    - upgrade_d6_node_complete_event
+    - upgrade_d6_node_complete_forum
+    - upgrade_d6_node_complete_page
+    - upgrade_d6_node_complete_panel
+    - upgrade_d6_node_complete_playlist
+    - upgrade_d6_node_complete_poll
+    - upgrade_d6_node_complete_program
+    - upgrade_d6_node_complete_sponsor
+    - upgrade_d6_node_complete_station_program
+    - upgrade_d6_node_complete_station_schedule
+    - upgrade_d6_node_complete_story
+    - upgrade_d6_node_complete_webform
+  optional:
+    - upgrade_d6_node_complete_audio
+    - upgrade_d6_node_complete_blog
+    - upgrade_d6_node_complete_book
+    - upgrade_d6_node_complete_event
+    - upgrade_d6_node_complete_forum
+    - upgrade_d6_node_complete_page
+    - upgrade_d6_node_complete_panel
+    - upgrade_d6_node_complete_playlist
+    - upgrade_d6_node_complete_poll
+    - upgrade_d6_node_complete_program
+    - upgrade_d6_node_complete_sponsor
+    - upgrade_d6_node_complete_station_program
+    - upgrade_d6_node_complete_station_schedule
+    - upgrade_d6_node_complete_story
+    - upgrade_d6_node_complete_webform
+    - upgrade_d6_node_complete_audio
+    - upgrade_d6_node_complete_blog
+    - upgrade_d6_node_complete_book
+    - upgrade_d6_node_complete_event
+    - upgrade_d6_node_complete_forum
+    - upgrade_d6_node_complete_page
+    - upgrade_d6_node_complete_panel
+    - upgrade_d6_node_complete_playlist
+    - upgrade_d6_node_complete_poll
+    - upgrade_d6_node_complete_program
+    - upgrade_d6_node_complete_sponsor
+    - upgrade_d6_node_complete_station_program
+    - upgrade_d6_node_complete_station_schedule
+    - upgrade_d6_node_complete_story
+    - upgrade_d6_node_complete_webform

@@ -1,0 +1,68 @@
+uuid: 1e09a001-2f69-40dd-a273-ae7949ed7f2d
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_upload
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - Content
+migration_group: migrate_drupal_6
+label: 'File uploads'
+source:
+  plugin: d6_upload
+process:
+  nid:
+    -
+      plugin: get
+      source: nid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: user_langcode
+      source: language
+      fallback_to_site_default: true
+  type:
+    -
+      plugin: get
+      source: type
+  upload:
+    -
+      plugin: sub_process
+      source: upload
+      process:
+        target_id:
+          plugin: migration_lookup
+          migration: upgrade_d6_file
+          source: fid
+        display: list
+        description: description
+destination:
+  plugin: 'entity:node'
+idMap: {  }
+migration_dependencies:
+  required:
+    - upgrade_d6_file
+    - upgrade_d6_node_complete_audio
+    - upgrade_d6_node_complete_blog
+    - upgrade_d6_node_complete_book
+    - upgrade_d6_node_complete_event
+    - upgrade_d6_node_complete_forum
+    - upgrade_d6_node_complete_page
+    - upgrade_d6_node_complete_panel
+    - upgrade_d6_node_complete_playlist
+    - upgrade_d6_node_complete_poll
+    - upgrade_d6_node_complete_program
+    - upgrade_d6_node_complete_sponsor
+    - upgrade_d6_node_complete_station_program
+    - upgrade_d6_node_complete_station_schedule
+    - upgrade_d6_node_complete_story
+    - upgrade_d6_node_complete_webform
+    - upgrade_d6_upload_field_instance
+  optional:
+    - upgrade_d6_file

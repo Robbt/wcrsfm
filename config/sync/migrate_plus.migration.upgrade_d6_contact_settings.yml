@@ -1,0 +1,45 @@
+uuid: 435b748b-3d6b-47e5-bcca-bc61f4fa7bac
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_contact_settings
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - Configuration
+migration_group: migrate_drupal_6
+label: 'Contact configuration'
+source:
+  plugin: contact_settings
+  variables:
+    - contact_default_status
+    - contact_hourly_threshold
+process:
+  user_default_enabled:
+    -
+      plugin: get
+      source: contact_default_status
+  flood/limit:
+    -
+      plugin: get
+      source: contact_hourly_threshold
+  flood/interval:
+    -
+      plugin: default_value
+      default_value: 3600
+  default_form:
+    -
+      plugin: migration_lookup
+      migration: upgrade_contact_category
+      source: default_category
+destination:
+  plugin: config
+  config_name: contact.settings
+idMap: {  }
+migration_dependencies:
+  required:
+    - upgrade_contact_category
+  optional:
+    - upgrade_contact_category

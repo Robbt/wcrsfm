@@ -1,0 +1,30 @@
+uuid: 5d1553e5-2514-485f-a64a-b5a6e2e58644
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_node_settings
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - Configuration
+migration_group: migrate_drupal_6
+label: 'Node configuration'
+source:
+  plugin: variable
+  variables:
+    - node_admin_theme
+  source_module: node
+process:
+  use_admin_theme:
+    -
+      plugin: get
+      source: node_admin_theme
+destination:
+  plugin: config
+  config_name: node.settings
+idMap: {  }
+migration_dependencies:
+  required: {  }
+  optional: {  }

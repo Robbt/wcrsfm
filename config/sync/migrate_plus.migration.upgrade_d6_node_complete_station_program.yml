@@ -1,0 +1,169 @@
+uuid: 18caaa14-39e7-4ccf-b6fb-b0b89ee15c00
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d6_node_complete_station_program
+class: Drupal\node\Plugin\migrate\D6NodeTranslation
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - Content
+migration_group: migrate_drupal_6
+label: 'Node Complete (station_program)'
+source:
+  plugin: d6_node_complete
+  node_type: station_program
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: timestamp
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  body/format:
+    -
+      plugin: migration_lookup
+      migration: upgrade_d6_filter_format
+      source: format
+  body/value:
+    -
+      plugin: get
+      source: body
+  body/summary:
+    -
+      plugin: get
+      source: teaser
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  content_translation_source:
+    -
+      plugin: get
+      source: source_langcode
+  field_logo:
+    -
+      plugin: d6_field_file
+      source: field_logo
+  field_podcast_feed_url:
+    -
+      plugin: field_link
+      source: field_podcast_feed_url
+  field_quick_description:
+    -
+      plugin: sub_process
+      source: field_quick_description
+      process:
+        value: value
+        format:
+          -
+            plugin: static_map
+            bypass: true
+            source: format
+            map:
+              - null
+          -
+            plugin: skip_on_empty
+            method: process
+          -
+            plugin: migration_lookup
+            migration: upgrade_d6_filter_format
+            source: format
+  field_show:
+    -
+      plugin: get
+      source: field_show
+  field_station_program_dj:
+    -
+      plugin: sub_process
+      source: field_station_program_dj
+      process:
+        target_id:
+          plugin: migration_lookup
+          migration: upgrade_d6_user
+          source: uid
+  field_station_program_genre:
+    -
+      plugin: sub_process
+      source: field_station_program_genre
+      process:
+        value: value
+        format:
+          -
+            plugin: static_map
+            bypass: true
+            source: format
+            map:
+              - null
+          -
+            plugin: skip_on_empty
+            method: process
+          -
+            plugin: migration_lookup
+            migration: upgrade_d6_filter_format
+            source: format
+  field_station_program_link:
+    -
+      plugin: field_link
+      source: field_station_program_link
+destination:
+  plugin: 'entity_complete:node'
+  translations: true
+  default_bundle: station_program
+idMap: {  }
+migration_dependencies:
+  required:
+    - upgrade_d6_user
+    - upgrade_d6_node_type
+    - upgrade_d6_node_settings
+    - upgrade_d6_filter_format
+  optional:
+    - upgrade_d6_field_instance_widget_settings
+    - upgrade_d6_field_formatter_settings
+    - upgrade_d6_upload_field_instance
+    - upgrade_d6_filter_format
+    - upgrade_d6_user
